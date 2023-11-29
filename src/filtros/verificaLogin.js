@@ -12,7 +12,7 @@ const verificaLogin = async (req, res, next) => {
     try {
         const token = authorization.replace('Bearer ', '').trim();
 
-        const { id } = jwt.verify(token, senhaHash);
+        const { id } = jwt.verify(token, process.env.JWT_HASH);
 
         const usuarioEncontrado = await knex('usuarios').where({ id }).first();
 
